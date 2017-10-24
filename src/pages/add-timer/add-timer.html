@@ -1,0 +1,21 @@
+<ion-header>
+        <ion-navbar>
+          <ion-title>Add A New Timer</ion-title>
+        </ion-navbar>
+      </ion-header>
+      
+      <ion-content>
+        <ion-item>
+            <ion-label>Time</ion-label>
+            <ion-datetime displayFormat="HH:m" [(ngModel)]="myDate"></ion-datetime>
+        </ion-item>    
+       
+      </ion-content>
+      
+      <ion-footer no-border>
+          <ion-toolbar>
+              <button ion-button round color="danger" (click)="cancel()">Cancel</button>
+              <button ion-button round (click)="saveEdits()">Save Timer</button>
+          </ion-toolbar>
+      </ion-footer>
+      
