@@ -22,7 +22,7 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
-
+$fab-content-margin: 20px;
 
 
 // Named Color Variables
@@ -56,6 +56,8 @@ $colors: (
 
 
 
+
+
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
@@ -84,5 +86,8 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+//@import "roboto";
+//@import "noto-sans";
+
+@import url(http://fonts.googleapis.com/css?family=Rokkitt);
+$font-family-md-base: 'Rokkitt', serif !default;
