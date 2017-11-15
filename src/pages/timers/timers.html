@@ -1,19 +1,18 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Timers</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let timer of timers">
-        <button ion-item (click)="editTimer(timer)">{{timer.title}}
-          <div class="item-note" item-end>{{timer.clock}}</div>
+        <button ion-item (click)="editTimer(timer)">
+          <ion-label>{{timer.title}}</ion-label>
+          <div item-end>{{timer.time}}</div>
         </button>
 
       <ion-item-options side="right">
-          <button ion-button color="secondary">Start</button>
-          <button ion-button color="danger">Delete</button>
+          <button ion-button color="secondary">
+            <ion-icon name="timer"></ion-icon>
+          </button>
+          <button ion-button color="danger" (click)="deleteTimer(timer)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
       </ion-item-options>
 
     </ion-item-sliding>
@@ -21,7 +20,7 @@
 </ion-content>
 
 <ion-fab right bottom>
-  <button ion-fab (click)="addNewTimer()">
+  <button ion-fab color='primary' (click)="addTimer()">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>
