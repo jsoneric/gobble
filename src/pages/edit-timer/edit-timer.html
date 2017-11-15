@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Edit Timer</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label floating>Timer</ion-label>
+    <ion-input [(ngModel)]='timer.title'></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label floating>Clock</ion-label>
+    <ion-datetime 
+      [(ngModel)]='timer.time'
+      displayFormat="hh:mm">
+    </ion-datetime>
+  </ion-item>
+</ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab color='primary' (click)="saveEdits()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>

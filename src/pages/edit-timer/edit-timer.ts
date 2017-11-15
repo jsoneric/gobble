@@ -1,12 +1,13 @@
+import { Timer } from './../../shared/interfaces/timer.interface';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'timer-detail',
-  templateUrl: 'timer-detail.html'
+  selector: 'edit-timer',
+  templateUrl: 'edit-timer.html'
 })
-export class TimerDetail {
-  public timer: any;
+export class EditTimer {
+  public timer: Timer;
   public title: string;
 
   constructor(
@@ -17,10 +18,6 @@ export class TimerDetail {
   }
 
   saveEdits() {
-    
-  }
-
-  cancel() {
     this.navCtrl.pop();
-  }  
+  }
 }
