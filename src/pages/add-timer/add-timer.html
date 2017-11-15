@@ -1,21 +1,28 @@
 <ion-header>
-        <ion-navbar>
-          <ion-title>Add A New Timer</ion-title>
-        </ion-navbar>
-      </ion-header>
-      
-      <ion-content>
+    <ion-navbar>
+      <ion-title>New Timer</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="addTimerForm">
         <ion-item>
-            <ion-label>Time</ion-label>
-            <ion-datetime displayFormat="HH:m" [(ngModel)]="myDate"></ion-datetime>
-        </ion-item>    
-       
-      </ion-content>
-      
-      <ion-footer no-border>
-          <ion-toolbar>
-              <button ion-button round color="danger" (click)="cancel()">Cancel</button>
-              <button ion-button round (click)="saveEdits()">Save Timer</button>
-          </ion-toolbar>
-      </ion-footer>
-      
+            <ion-label floating>Title</ion-label>
+            <ion-input formControlName="title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Time</ion-label>
+            <ion-datetime 
+                formControlName="time" 
+                displayFormat="hh:mm:ss" 
+                pickerFormat="hh:mm "></ion-datetime>
+        </ion-item>
+    </form>
+</ion-content>
+
+<ion-fab right bottom>
+    <button ion-fab color='primary' (click)="saveEdits()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+</ion-fab>

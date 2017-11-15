@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { TimerDetail } from './../timer-detail/timer-detail';
+import { EditTimer } from './../edit-timer/edit-timer';
 import { AddTimer } from './../add-timer/add-timer';
+import { TimerService } from './../../shared/services/timer-service';
+import { Timer } from './../../shared/interfaces/timer.interface';
 
 @Component({
   selector: 'timers',
@@ -9,33 +11,37 @@ import { AddTimer } from './../add-timer/add-timer';
 })
 
 export class Timers {
-  icons: string[];
-  public timers: Array<{title: string, note: string, icon: string, clock: string}>;
+  public timers: Timer[] = [];
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams) {
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.timers = [];
-    for (let i = 1; i < 11; i++) {
-      this.timers.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)],
-        clock: i+':20'
-      });
-    }
+    public navParams: NavParams,
+    private timerService: TimerService) {
   }
 
-  public addNewTimer(){
-    this.navCtrl.push(AddTimer);
+  ionViewWillEnter() {
+    this.loadActiveTimers()
+  }
+
+  loadActiveTimers() {
+    this.timerService.activeTimers()
+      .then((res) => {
+        this.timers = res;
+      });
+  }
+
+  public addTimer(){
+    this.navCtrl.push(AddTimer, {'theTimer': this.timerService.newTimer()});
   }
 
   public editTimer(timer) {
-    this.navCtrl.push(TimerDetail, {'timer': timer});
+    this.navCtrl.push(EditTimer, {'timer': timer});
+  }
+
+  public deleteTimer(timer) {
+    this.timers = this.timerService.deleteTimer(timer.id);
   }
 }
+
+
+
