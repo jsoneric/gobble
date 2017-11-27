@@ -3,7 +3,7 @@
     <ion-item-sliding *ngFor="let timer of timers">
         <button ion-item (click)="editTimer(timer)">
           <ion-label>{{timer.title}}</ion-label>
-          <div item-end>{{timer.time}}</div>
+          <div item-end>{{timer.initialDuration}}</div>
         </button>
 
       <ion-item-options side="right">
