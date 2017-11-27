@@ -4,6 +4,7 @@ import { EditTimer } from './../edit-timer/edit-timer';
 import { AddTimer } from './../add-timer/add-timer';
 import { TimerService } from './../../shared/services/timer-service';
 import { Timer } from './../../shared/interfaces/timer.interface';
+import { ItemSliding } from 'ionic-angular/components/item/item-sliding';
 
 @Component({
   selector: 'timers',
@@ -39,9 +40,14 @@ export class Timers {
   }
 
   public deleteTimer(timer) {
-    this.timers = this.timerService.deleteTimer(timer.id);
+    this.timerService.deleteTimer(timer)
+      .then(() => {
+        this.loadActiveTimers();
+      });
   }
+
+  share(slidingItem: ItemSliding) {
+    slidingItem.close();
+  }
+
 }
-
-
-

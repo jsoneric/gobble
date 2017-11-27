@@ -1,5 +1,5 @@
 import { DBService } from './db-service';
-import { Injectable, Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Timer } from './../../shared/interfaces/timer.interface';
 
 @Injectable()
@@ -15,21 +15,24 @@ export class TimerService {
             .then(res => {
                 this.timers = [];
                 for(var i=0; i<res.rows.length; i++) {
-                    this.timers.push(<Timer>{id:res.rows.item(i).rowid, title:res.rows.item(i).title, initialDuration:res.rows.item(i).initialDuration, remainingDuration:res.rows.item(i).remainingDuration})
+                    var item = res.rows.item(i);
+                    this.timers.push(<Timer>{id:item.rowid, title:item.title, initialDuration:item.initialDuration, remainingDuration:item.remainingDuration})
                 }
-                console.debug(this.timers);
                 return this.timers;
             })
-        .catch(e => console.log(e));
+            .catch(e => console.log(e));
     }
 
     addTimer(timer:Timer):Promise<any> {
         return this.dbService.saveData(timer);
     }
 
-    deleteTimer(removeId) {
-        this.timers = this.timers.filter(timer => timer.id != removeId)
-        return this.timers;
+    deleteTimer(timer:Timer):Promise<any> {
+        return this.dbService.deleteData(timer.id)
+            .then(res => {
+                this.activeTimers();
+            })
+            .catch(e => console.log(e));
     }
 
     newTimer():Timer{
@@ -37,6 +40,7 @@ export class TimerService {
         t.id = 0;
 		t.title = '';
 		t.initialDuration = '';
+		t.remainingDuration = '';
 		return t;
 	}
 }
