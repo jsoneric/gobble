@@ -23,6 +23,8 @@ $app-direction: ltr;
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 $fab-content-margin: 20px;
+$background-color: #1c1c1c;
+$text-color: #A99378;
 
 
 // Named Color Variables
@@ -89,5 +91,5 @@ $colors: (
 //@import "roboto";
 //@import "noto-sans";
 
-@import url(http://fonts.googleapis.com/css?family=Rokkitt);
-$font-family-md-base: 'Rokkitt', serif !default;
+@import url(https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:600);
+$font-family-md-base: 'Barlow Semi Condensed', sans-serif;

@@ -3,13 +3,16 @@ timers {
         margin-top: 30px;
 
         .item {
-            font-size: 2.5rem;
-            color: #A99378;
-            padding-top: 8px;
+            font-size: 3rem;
+            padding-top: 5px;
 
             .item-inner {
                 border: 0px;
             }
+        }
+
+        ion-item-options .button {
+            padding: 0 1.7em;
         }
     }
 }
